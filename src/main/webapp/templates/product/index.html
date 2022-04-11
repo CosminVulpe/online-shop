@@ -1,65 +1,149 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8" />
-    <meta name="author" content="Codecool" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <title>Codecool Shop</title>
-
-    <!-- Bootstrap components -->
-    <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-    <!--Latest compiled and minified Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <!-- End of Bootstrap components -->
-
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
-</head>
+<div th:replace="header.html :: header"></div>
 
 <body>
-
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-</div>
-
-<div class="container">
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+<!-- NAVIGATION-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-3 fixed-top">
+    <div class="container">
+        <img src="/static/img/shop-logo2.jpeg" class="img-thumbnail" alt="Logo codecool IT company" id="logo-imagine">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span><i id="bar" class="fa fa-bars" aria-hidden="true"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </li>
+                <li class="nav-cart">
+                    <i class="fa fa-shopping-cart" aria-hidden="true" onclick="location.href='/shopping-cart'"><span>0</span></i>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
 
-    <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
-                <div class="card-header">
-                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+<section id="home">
+    <div class="text">
+        <h5>NEW ARRIVALS</h5>
+        <h1><span>Best Prices </span> This Year</h1>
+        <p>The Future Is Here<br> Code It!</p>
+        <button>Shop Now</button>
+    </div>
+</section>
+
+<section id="brand" class="container">
+    <div class="row m-0 py-2">
+        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/lenovo-black.jpg" alt="">
+        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/samsung-black2.png" alt="">
+        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/lenovo-black.jpg" alt="">
+        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/samsung-black2.png" alt="">
+        <!--        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/lenovo-black.jpg" alt="">-->
+        <!--        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/samsung-black2.png" alt="">-->
+    </div>
+</section>
+
+<section id="new" class="w-100">
+    <div class="row p-0 m-0">
+        <div class="one col-lg-4 col-md-12 col-12 p-0">
+            <img class="img-fluid" src="/static/img/new/latops-white1.jpg" alt="">
+            <div class="details">
+                <h2 class="headers">Laptops</h2>
+                <button class="text-uppercase">Shop Now</button>
+            </div>
+        </div>
+        <div class="one col-lg-4 col-md-12 col-12 p-0">
+            <img class="img-fluid" src="/static/img/new/tables-kids-white4.png" alt="">
+            <div class="details">
+                <h2 class="headers">Tablets</h2>
+                <button class="text-uppercase">Shop Now</button>
+            </div>
+        </div>
+        <div class="one col-lg-4 col-md-12 col-12 p-0">
+            <img class="img-fluid" src="/static/img/new/smartphone-white4.png" alt="">
+            <div class="details">
+                <h2 class="headers">Smartphones</h2>
+                <button class="text-uppercase">Shop Now</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="featured">
+    <div class="container text-center mt-5 py-5">
+        <h3> Our feature</h3>
+        <hr class="mx-auto">
+        <p>Here you can check out our new products with fair prices </p>
+    </div>
+    <div class="container">
+        <!--        <div class="card" th:each="cat:${category}">-->
+        <!--            <strong th:text="${cat.getName()}">Category Title</strong>-->
+        <!--        </div>-->
+
+        <div class="float-left">
+            <select name="supplier" id="supplier">
+                <option value="0">Select supplier</option>
+                <option th:each="suppl : ${suppliers}" th:value="${suppl.name}"
+                        th:text="${suppl.name}"></option>
+            </select>
+        </div>
+        <div class="float-right">
+            <select name="category" id="category">
+                <option value="0">Select category</option>
+                <option th:each="cat: ${category} " th:value="${cat.name}" th:text="${cat.name}"></option>
+            </select>
+
+        </div>
+
+        <div id="products" class="row mx-auto container-fluid">
+            <div class="product col col-sm-12 col-md-6 col-lg-4 text-center col-lg-3 col-md-4 col-12"
+                 th:each="prod,iterStat : ${products}">
+                <div class="card">
+                    <img class="img-fluid" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+                    <div class="card-header">
+                        <div class="star">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                        <p class="supplier-name" th:text="${prod.supplier.name}">Supplier</p>
+                        <p class="category-name" th:text="${prod.getProductCategory().getName()}">Category</p>
+                        <p class="card-text" th:text="${prod.description}">Product description... </p>
                     </div>
-                    <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                    <div class="card-footer">
+                        <div class="card-text">
+                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        </div>
+                        <div class="card-text">
+                            <a class="btn btn">Add to cart</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
+</section>
 
 <div th:replace="footer.html :: copy"></div>
 

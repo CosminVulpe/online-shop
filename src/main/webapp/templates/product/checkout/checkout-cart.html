@@ -32,44 +32,61 @@
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/dropdown-menu.css"/>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <script src="/static/js/checkoutCard.js" defer></script>
 <!--    <script src="/static/js/cart.js" defer></script>-->
 <body>
 <div class="container">
-    <form>
         <div class="card text-center">
             <div class="card-header">
                 CHECKOUT CARD
             </div>
             <div class="card-body">
-                <p>First Name:</p>
-                <input type="text" placeholder="First Name" required autofocus>
-                <p>Last Name:</p>
-                <input type="text" placeholder="Last Name" required>
-                <p>Email:</p>
-                <input type="email" placeholder="Email" required>
-                <p>Phone Number:</p>
-                <input type="tel" placeholder="Phone Number" required>
-                <p>Country:</p>
-                <select th:replace="countries.html :: countries" name="countries" id="countries" required>
-                </select>
-                <p>City</p>
-                <input type="text" placeholder="City">
-                <p>Address</p>
-                <input type="tel" placeholder="Street, number, ap...">
-                <p>Zipcode</p>
-                <input type="number" placeholder="Zipcode">
-                <br/>
-                <input type="checkbox" required>
-                <label>I agree with Terms and Conditions</label>
-                <br/>
-                <input type="submit" value="Submit">
+                <form id="form">
+                    <p>First Name:</p>
+                    <input type="text" placeholder="First Name" id="first_name" value="" required autofocus>
+                    <p>Last Name:</p>
+                    <input type="text" placeholder="Last Name" id="last_name" value="" required>
+                    <p>Email:</p>
+                    <input type="email" placeholder="Email" id="email" value="" required>
+                    <p>Phone Number:</p>
+                    <input type="tel" placeholder="Phone Number" id="phone_number" value="" required>
+                    <h4>Billing Address</h4>
+                    <p>Country:</p>
+                    <select th:replace="countries.html :: countries">
+                    </select>
+                    <p>City</p>
+                    <input type="text" placeholder="City" value="" id="city_bill">
+                    <p>Address</p>
+                    <input type="tel" placeholder="Street, number, ap..." value="" id="address_bill">
+                    <p>Zipcode</p>
+                    <input type="number" placeholder="Zipcode" value="" id="zipcode_bill">
+                    <br/>
+                    <input type="checkbox" id="fill_in" required>
+                    <label>BillAddress same as ShippingAddress ?</label>
+                    <br/>
+                    <h4>Shipping Address</h4>
+                    <p>Country:</p>
+                    <select th:replace="countries.html :: countries" name="countries" id="countries_ship" required>
+                    </select>
+                    <p>City</p>
+                    <input type="text" placeholder="City" value="" id="city_ship">
+                    <p>Address</p>
+                    <input type="tel" placeholder="Street, number, ap..." value="" id="address_ship">
+                    <p>Zipcode</p>
+                    <input type="number" placeholder="Zipcode" value="" id="zipcode_ship">
+                    <br/>
+                    <input type="checkbox" id="checkbox" required>
+                    <label>I agree with Terms and Conditions</label>
+                    <br/>
+                    <input type="submit" class="btn btn-primary" value="Submit" id="submit">
+                </form>
+
             </div>
             <div class="card-footer text-muted">
                 ALL PERSONAL DATA IS SECURED AND NEVER USED WITHOUT YOUR APPROVAL
             </div>
         </div>
 
-    </form>
 </div>
 </body>
 </html>

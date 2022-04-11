@@ -8,8 +8,9 @@ const displayCart = () => {
 
     let productContainer = document.querySelector('.products');
     let totalCost = localStorage.getItem("totalCost");
+    productContainer.innerHTML = '';
+
     if (items && productContainer) {
-        productContainer.innerHTML = '';
 
         Object.values(items).map(item => {
             let names = item.name.replace(/ /g, "_");
@@ -47,6 +48,11 @@ const displayCart = () => {
             <div class="checkout-btn">
                 <button onclick="location.href='/checkout'">Checkout</button>
             </div>
+        `;
+    } else {
+        productContainer.innerHTML += `
+        <p class="text-center">You have nothing in cart</p>
+        <button onclick="location.href='/'">Go Back</button>
         `;
     }
 }
@@ -114,7 +120,6 @@ const updateQuantityCart = () => {
         });
     }
 }
-
 
 const init = () => {
     displayCart();

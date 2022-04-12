@@ -37,3 +37,13 @@ const rotateCreditCard = () => {
 }
 
 rotateCreditCard();
+
+
+const ceva = document.getElementById("submit");
+ceva.addEventListener( "click", redirect);
+console.log(ceva);
+
+
+function redirect(){
+    window.location.href = "/orderConfirmation";
+}

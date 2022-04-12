@@ -18,7 +18,5 @@ public class OrderController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         engine.process("order/order.html", context, resp.getWriter());
-
-
     }
 }

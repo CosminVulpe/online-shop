@@ -32,14 +32,14 @@ public class PaymentController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
-        List<Integer> range = IntStream.rangeClosed(1, 12)
-                .boxed().collect(Collectors.toList());
-
-        List<Integer> years = IntStream.rangeClosed(2022, 2035)
-                .boxed().collect(Collectors.toList());
-
-        context.setVariable("numbers", range);
-        context.setVariable("years", years);
+        context.setVariable("numbers", getNumbers(1,12));
+        context.setVariable("years", getNumbers(2023 , 2035));
         engine.process("payment/payment.html", context, resp.getWriter());
+    }
+
+
+    private List<Integer> getNumbers(int start, int end) {
+        return IntStream.rangeClosed(start, end)
+                .boxed().collect(Collectors.toList());
     }
 }

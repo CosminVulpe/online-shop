@@ -28,22 +28,6 @@ const rotateCreditCard = () => {
     document.querySelector('.cvv-input').oninput = () => {
         document.querySelector('.cvv-box').innerText = document.querySelector('.cvv-input').value;
     }
-
-
-    localStorage.removeItem("cartNumber");
-    localStorage.removeItem("productsInCart");
-    localStorage.removeItem("totalCost");
-
 }
 
 rotateCreditCard();
-
-
-const ceva = document.getElementById("submit");
-ceva.addEventListener( "click", redirect);
-console.log(ceva);
-
-
-function redirect(){
-    window.location.href = "/orderConfirmation";
-}

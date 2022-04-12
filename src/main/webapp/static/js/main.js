@@ -86,19 +86,10 @@ const addProducts = (key, value) => {
 
 const calculateTotalCost = (product) => {
     let cartPrice = localStorage.getItem("totalCost");
-    let actualPrice = "";
-    let currency = "";
 
     if (cartPrice !== null) {
-        for (let x of product.price.trim()) {
-            if (isNaN(x) === false) {
-                actualPrice += x;
-            } else {
-                currency += x;
-            }
-        }
         cartPrice = parseInt(cartPrice);
-        localStorage.setItem("totalCost", (cartPrice + parseInt(actualPrice)) + currency);
+        localStorage.setItem("totalCost", cartPrice + parseFloat(product.price));
     } else {
         localStorage.setItem("totalCost", parseInt(product.price));
     }

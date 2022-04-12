@@ -11,7 +11,6 @@ const displayCart = () => {
     productContainer.innerHTML = '';
 
     if (items && productContainer) {
-
         Object.values(items).map(item => {
             let names = item.name.replace(/ /g, "_");
             for (let x of item.price) {

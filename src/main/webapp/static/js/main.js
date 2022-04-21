@@ -8,33 +8,49 @@ const filterCards = () => {
     let filterSupplier = supplier.options[supplier.selectedIndex].innerText;
 
     let bothFiltersSelected = false;
+    let allCardsHaveNoneDisplay = false;
 
     let category = document.querySelector('#category');
     let filterCategory = category.options[category.selectedIndex].innerText;
 
     const cards = cardContainer.getElementsByClassName('product');
-
     for (let i = 0; i < cards.length; i++) {
         let supplier = cards[i].querySelector('.card-header p.supplier-name');
         let category = cards[i].querySelector('.card-header p.category-name');
 
-        if (supplier.innerText === filterSupplier && category.innerText === filterCategory) {
+        if (filterSupplier !== "Select supplier"
+            && filterCategory !== "Select category") {
             bothFiltersSelected = true;
         }
-        // console.log(bothFiltersSelected);
-        // console.log(supplier.innerText + " EQUALS SUPPLIER " + filterSupplier, supplier.innerText === filterSupplier)
-        // console.log(category.innerText + " EQUALS CATEGORY " + filterCategory, category.innerText === filterCategory)
 
-        if ((supplier.innerText === filterSupplier
-            || category.innerText === filterCategory) && bothFiltersSelected === false) {
-            cards[i].style.display = "";
-        } else if ((supplier.innerText === filterSupplier
-            && category.innerText === filterCategory) && bothFiltersSelected === true) {
-            cards[i].style.display = "";
+        if (bothFiltersSelected === false) {
+            if (supplier.innerText === filterSupplier
+                || category.innerText === filterCategory) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
         } else {
-            cards[i].style.display = "none";
+            if (supplier.innerText === filterSupplier
+                && category.innerText === filterCategory) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+                if (cards[i].style.display === "none") {
+                    console.log(cards[i]);
+                    allCardsHaveNoneDisplay = true;
+                }
+            }
         }
     }
+    console.log(allCardsHaveNoneDisplay)
+    if (allCardsHaveNoneDisplay === true) {
+        const p = document.createElement('p');
+        p.innerText = "No such item(s)";
+        p.setAttribute('class', 'text-center');
+        document.querySelector('#products').append(p);
+    }
+
 }
 
 const addItemsToCart = (product) => {

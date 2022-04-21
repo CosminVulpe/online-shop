@@ -93,14 +93,14 @@
 
         <div class="float-left">
             <select name="supplier" id="supplier">
-                <option value="0">Select supplier</option>
+                <option disabled selected value="">Select supplier</option>
                 <option th:each="suppl : ${suppliers}" th:value="${suppl.name}"
                         th:text="${suppl.name}"></option>
             </select>
         </div>
         <div class="float-right">
             <select name="category" id="category">
-                <option value="0">Select category</option>
+                <option disabled selected value="">Select category</option>
                 <option th:each="cat: ${category} " th:value="${cat.name}" th:text="${cat.name}"></option>
             </select>
 

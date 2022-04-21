@@ -37,13 +37,11 @@ const filterCards = () => {
             } else {
                 cards[i].style.display = "none";
                 if (cards[i].style.display === "none") {
-                    console.log(cards[i]);
                     allCardsHaveNoneDisplay = true;
                 }
             }
         }
     }
-    console.log(allCardsHaveNoneDisplay)
     if (allCardsHaveNoneDisplay === true) {
         const p = document.createElement('p');
         p.innerText = "No such item(s)";
@@ -111,6 +109,28 @@ const calculateTotalCost = (product) => {
     }
 }
 
+const searchBar = () => {
+    const searchIconParent = document.querySelector('.fa-search').parentElement;
+    searchIconParent.innerHTML = `
+            <label for="search-products">Search products:</label>
+            <input type="search" id="search-products" name="search-products">
+        `;
+    const searchInput = document.querySelector('#search-products');
+    searchInput.addEventListener('input', () => {
+        let valueInput = searchInput.value.toUpperCase();
+
+        const cards = cardContainer.getElementsByClassName('product');
+        for (let i = 0; i < cards.length; i++) {
+            let name = cards[i].querySelector('.card-header h4.card-title');
+            if (name.innerText.toUpperCase().indexOf(valueInput) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    });
+}
+
 
 const init = () => {
     let supplier = document.querySelector('#supplier');
@@ -136,6 +156,8 @@ const init = () => {
         })
     }
     onLoadCartNumber();
+    const searchIcon = document.querySelector('.fa-search');
+    searchIcon.addEventListener('click', searchBar);
 }
 
 init();

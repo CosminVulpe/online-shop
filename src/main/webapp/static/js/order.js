@@ -46,19 +46,7 @@ const fillOrderDetails = () => {
              </td>
         </tr>
     `;
-
-    localStorage.removeItem("cartNumber");
-    localStorage.removeItem("countryShip");
-    localStorage.removeItem("addressShip");
-    localStorage.removeItem("cityShip");
-    localStorage.removeItem("productsInCart");
-    localStorage.removeItem("lastName");
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("totalCost");
-    localStorage.removeItem("email");
-    localStorage.removeItem("telephoneNumber");
-    localStorage.removeItem("FirstName");
-    localStorage.removeItem("zipCodeShip");
+    localStorage.clear();
 }
 
 fillOrderDetails();

@@ -1,8 +1,6 @@
 const checkBox = document.getElementById("fill_in");
 checkBox.addEventListener("click", validation);
 
-// const submit = document.getElementById("submit");
-// submit.addEventListener("click", redirect);
 
 const firstName = document.getElementById("first_name");
 const lastName = document.getElementById("last_name");

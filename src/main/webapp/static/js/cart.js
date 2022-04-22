@@ -106,7 +106,6 @@ const updateQuantityCart = () => {
                 localStorage.setItem("productsInCart", JSON.stringify(cartItems));
             }
             if (parseInt(inputClicked.value) === 0) {
-                // input.parentElement.parentElement.remove();
                 for (const [key, value] of Object.entries(cartItems)) {
                     if (key === productName) {
                         delete cartItems[key];
@@ -145,7 +144,6 @@ const updateQuantityCart = () => {
 
             }
             if (parseInt(inputValue.value) === 0) {
-                // inputValue.parentElement.parentElement.remove();
                 for (const [key, value] of Object.entries(cartItems)) {
                     if (key === productName) {
                         delete cartItems[key];

@@ -8,7 +8,6 @@ const filterCards = () => {
     let filterSupplier = supplier.options[supplier.selectedIndex].innerText;
 
     let bothFiltersSelected = false;
-    let allCardsHaveNoneDisplay = false;
 
     let category = document.querySelector('#category');
     let filterCategory = category.options[category.selectedIndex].innerText;
@@ -36,20 +35,35 @@ const filterCards = () => {
                 cards[i].style.display = "";
             } else {
                 cards[i].style.display = "none";
-                if (cards[i].style.display === "none") {
-                    allCardsHaveNoneDisplay = true;
-                }
             }
         }
     }
-    if (allCardsHaveNoneDisplay === true) {
+
+    if (checkAllCardsHaveDisplayNone() === true) {
         const p = document.createElement('p');
         p.innerText = "No such item(s)";
-        p.setAttribute('class', 'text-center');
+        p.setAttribute('class', 'text-center msg');
         document.querySelector('#products').append(p);
+    } else {
+        const message = document.querySelector('#products .msg');
+        if (message !== null) {
+            message.style.display = "none";
+        }
     }
 
 }
+
+const checkAllCardsHaveDisplayNone = () => {
+    let cards = cardContainer.getElementsByClassName('product');
+    let counter = 0;
+    for (let i = 0; i < cards.length; i++) {
+        if (cards[i].style.display === "none") {
+            counter++;
+        }
+    }
+    return (counter === 4);
+}
+
 
 const addItemsToCart = (product) => {
     let productNumber = localStorage.getItem('cartNumber');
@@ -59,6 +73,7 @@ const addItemsToCart = (product) => {
         document.querySelector('.nav-cart span').textContent = productNumber + 1;
     } else {
         localStorage.setItem('cartNumber', 1);
+
         document.querySelector('.nav-cart span').textContent = 1;
     }
     setItems(product);

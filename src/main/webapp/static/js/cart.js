@@ -57,9 +57,7 @@ const removeItemsCart = () => {
             let productClicked = buttonClicked.parentElement;
             let productName = productClicked.querySelectorAll('.description span')[0].innerText;
 
-            console.log(cartItems);
-
-            localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+            deleteFromLocalMemory(cartItems, productName)
             localStorage.setItem("cartNumber", (parseInt(localStorage.getItem("cartNumber")) - 1).toString());
             buttonClicked.parentElement.remove();
 
@@ -97,26 +95,15 @@ const updateQuantityCart = () => {
 
             if (parseInt(inputClicked.value) < 0 || isNaN(inputClicked.value)) {
                 inputClicked.value = 1;
-                for (const [key, value] of Object.entries(cartItems)) {
-                    if (key === productName) {
-                        cartItems[key].inCart = inputClicked.value;
-                    }
-
-                }
-                localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+                updateLocalMemory(cartItems, productName, inputClicked.value)
             }
             if (parseInt(inputClicked.value) === 0) {
-                for (const [key, value] of Object.entries(cartItems)) {
-                    if (key === productName) {
-                        delete cartItems[key];
-                    }
-                }
-                localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+                deleteFromLocalMemory(cartItems, productName);
                 localStorage.setItem("cartNumber", (parseInt(localStorage.getItem("cartNumber")) - 1).toString());
                 input.parentElement.parentElement.remove();
 
             }
-
+            updateLocalMemory(cartItems, productName, inputClicked.value);
             updateCartTotal();
         })
     });
@@ -144,12 +131,7 @@ const updateQuantityCart = () => {
 
             }
             if (parseInt(inputValue.value) === 0) {
-                for (const [key, value] of Object.entries(cartItems)) {
-                    if (key === productName) {
-                        delete cartItems[key];
-                    }
-                }
-                localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+                deleteFromLocalMemory(cartItems, productName);
                 localStorage.setItem("cartNumber", (parseInt(localStorage.getItem("cartNumber")) - 1).toString());
                 inputValue.parentElement.parentElement.remove();
 
@@ -163,7 +145,17 @@ const updateQuantityCart = () => {
 const updateLocalMemory = (cartItems, productName, inputValueInt) => {
     for (const [key, value] of Object.entries(cartItems)) {
         if (key === productName) {
-            cartItems[key].inCart = inputValueInt;
+            cartItems[key].inCart = parseInt(inputValueInt);
+        }
+    }
+    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+}
+
+
+const deleteFromLocalMemory = (cartItems, productName) => {
+    for (const [key, value] of Object.entries(cartItems)) {
+        if (key === productName) {
+            delete cartItems[key];
         }
     }
     localStorage.setItem("productsInCart", JSON.stringify(cartItems));

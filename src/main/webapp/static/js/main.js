@@ -66,17 +66,17 @@ const checkAllCardsHaveDisplayNone = () => {
 
 
 const addItemsToCart = (product) => {
-    let productNumber = localStorage.getItem('cartNumber');
-    productNumber = parseInt(productNumber);
-    if (productNumber) {
-        localStorage.setItem('cartNumber', productNumber + 1);
-        document.querySelector('.nav-cart span').textContent = productNumber + 1;
-    } else {
-        localStorage.setItem('cartNumber', 1);
-
-        document.querySelector('.nav-cart span').textContent = 1;
-    }
     setItems(product);
+    let products = localStorage.getItem("productsInCart");
+    products = JSON.parse(products);
+    const map = new Map();
+    for (const item of Object.keys(products)) {
+        if (!map.has(item)) {
+            map.set(item, product.name);
+            localStorage.setItem('cartNumber', map.size);
+            document.querySelector('.nav-cart span').textContent = map.size;
+        }
+    }
 }
 
 const setItems = (product) => {

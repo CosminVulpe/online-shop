@@ -3,6 +3,16 @@ const buttons = document.querySelectorAll('.btn');
 const cards = cardContainer.getElementsByClassName('product');
 let productsInStore = {}
 
+
+const registerButton = document.querySelector('#btn-register');
+const loginButton = document.querySelector('#btn-login');
+const logoutButton = document.querySelector('#bt-logout');
+const loggedUser = document.querySelector('#logged-user');
+const wordSuccess = document.querySelector('div.modal-footer.alert.alert-success');
+const wordDanger = document.querySelector('div.modal-footer.alert.alert-danger');
+const title = document.querySelector('#modal-title');
+
+
 const filterCards = () => {
     let supplier = document.querySelector('#supplier');
     let filterSupplier = supplier.options[supplier.selectedIndex].innerText;
@@ -147,6 +157,88 @@ const searchBar = () => {
 }
 
 
+const toggleModal = (modalTitle, processOption) => {
+    // title.innerText = modalTitle;
+
+    // wordSuccess.style.display = "none";
+    // wordDanger.style.display = "none";
+
+    $('#register-login-modal').modal('show');
+    const submitButton = document.querySelector('.modal-body>form>button');
+    submitButton.addEventListener('click', processOption === 'register' ? addUser : loginUser);
+}
+
+const addUser = async () => {
+    const password = document.querySelector('[name="form-password"]').value;
+    const user = document.querySelector('[name="form-username"]').value;
+
+    let dataPosted = {
+        username: user,
+        userPassword: password
+    };
+
+    let serverResponse = await fetch("/registration", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+        },
+        body: JSON.stringify(dataPosted),
+    });
+
+    let jsonResponse = await serverResponse.json();
+    console.log(jsonResponse);
+    //
+    // if (jsonResponse['success']) {
+    //     wordSuccess.style.display = "block";
+    // } else {
+    //     wordDanger.style.display = "block";
+    // }
+    // console.log(jsonResponse);
+}
+
+
+const loginUser = async () => {
+    console.log("login USER")
+    const password = document.querySelector('[name="form-password"]').value;
+    const user = document.querySelector('[name="form-username"]').value;
+
+    let dataPosted = {
+        username: user,
+        userPassword: password
+    };
+    let serverResponse = await fetch("/api/login", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+        },
+        body: JSON.stringify(dataPosted),
+    });
+    // let jsonResponse = await serverResponse.json();
+    //
+    //
+    // if (jsonResponse['success']) {
+    //     wordSuccess.innerText = "Logged in successful";
+    //     wordSuccess.style.display = "block";
+    //     wordDanger.style.display = "none";
+    //     sessionStorage.setItem("logged in", "true");
+    //     sessionStorage.setItem("userName", `${jsonResponse['username']}`);
+    //     sessionStorage.setItem("logUser", `${jsonResponse['username']}`);
+    //     registerButton.style.display = "none";
+    //     loginButton.style.display = "none";
+    //     loggedUser.innerText = "Log in as " + `${jsonResponse['username']}`;
+    //     logoutButton.style.display = "inline-block";
+    //
+    //     loggedUser.style.display = "inline-block";
+    // } else {
+    //     wordDanger.innerText = "Incorrect password or user";
+    //     wordSuccess.style.display = "none";
+    //     wordDanger.style.display = "block";
+    // }
+
+}
+
 const init = () => {
     let supplier = document.querySelector('#supplier');
     supplier.addEventListener('change', filterCards);
@@ -173,6 +265,12 @@ const init = () => {
     onLoadCartNumber();
     const searchIcon = document.querySelector('.fa-search');
     searchIcon.addEventListener('click', searchBar);
+    registerButton.addEventListener('click', () => {
+        toggleModal("register new user", 'register');
+    });
+    loginButton.addEventListener('click', () => {
+        toggleModal("login user", 'login');
+    });
 }
 
 init();

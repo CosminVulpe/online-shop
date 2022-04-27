@@ -1,6 +1,7 @@
 drop table if exists public.Product;
 drop table if exists public.ProductCategory;
 drop table if exists public.Supplier;
+drop table if exists public.Users;
 
 create table public.Product(id integer primary key not null,
                             name text not null,
@@ -18,6 +19,10 @@ create table public.ProductCategory(id integer primary key not null,
 create table public.Supplier(id integer not null,
                              name text not null,
                              description text not null);
+
+create table public.Supplier(id integer primary key not null,
+                             email text not null,
+                             password text not null);
 
 insert into productcategory(id, name, departament, description)
 values(1, 'Tablet', 'Hardware','A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.'),

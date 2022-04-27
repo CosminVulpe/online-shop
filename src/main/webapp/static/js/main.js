@@ -186,8 +186,8 @@ const addUser = async () => {
         body: JSON.stringify(dataPosted),
     });
 
-    let jsonResponse = await serverResponse.json();
-    console.log(jsonResponse);
+    // let jsonResponse = await serverResponse.json();
+    // console.log(jsonResponse);
     //
     // if (jsonResponse['success']) {
     //     wordSuccess.style.display = "block";

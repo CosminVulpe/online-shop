@@ -24,7 +24,7 @@ create table public.Supplier(id integer primary key not null,
                              email text not null,
                              password text not null);
 
-insert into productcategory(id, name, departament, description)
+insert into public.productcategory(id, name, departament, description)
 values(1, 'Tablet', 'Hardware','A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.'),
 (2, 'SmartPhones', 'Hardware','A smartphone is a handheld electronic device that provides a connection to a cellular network and the internet.'),
 (3, 'Accessories', 'Others','All products needs extra accessories for a better aesthetic aspect'),

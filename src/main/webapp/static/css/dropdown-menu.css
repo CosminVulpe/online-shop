@@ -441,6 +441,12 @@ input:focus {
     width: 10%;
 }
 
+.navbar-light .navbar-nav .nav-btn{
+    padding: 0 06px;
+    transition: 0.3s ease;
+
+}
+
 
 
 

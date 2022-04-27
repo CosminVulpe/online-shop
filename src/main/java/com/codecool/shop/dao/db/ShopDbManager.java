@@ -8,12 +8,14 @@ import java.util.List;
 
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
+import com.codecool.shop.model.User;
 import org.postgresql.ds.PGSimpleDataSource;
 
 public class ShopDbManager {
     private ProductCategoryDaoJdbc productCategoryDaoJdbc;
     private ProductDaoJdbc productDaoJdbc;
     private SupplierDaoJdbc supplierDaoJdbc;
+    private UserDaoJdb userDaoJdbc;
 
     public void run() {
         try {
@@ -29,6 +31,7 @@ public class ShopDbManager {
         this.productCategoryDaoJdbc = new ProductCategoryDaoJdbc(dataSource);
         this.supplierDaoJdbc = new SupplierDaoJdbc(dataSource);
         this.productDaoJdbc = new ProductDaoJdbc(dataSource, supplierDaoJdbc, productCategoryDaoJdbc);
+        this.userDaoJdbc = new UserDaoJdb(dataSource);
     }
 
     private DataSource connect() throws SQLException {
@@ -46,47 +49,54 @@ public class ShopDbManager {
         return dataSource;
     }
 
-    public void insertSupplier(Supplier supplier){
+    public void insertSupplier(Supplier supplier) {
         supplierDaoJdbc.add(supplier);
     }
 
-    public void removeSupplier(int id){
+    public void removeSupplier(int id) {
         supplierDaoJdbc.remove(id);
     }
 
-    public List<Supplier> getSuppliers(){
+    public List<Supplier> getSuppliers() {
         return supplierDaoJdbc.getAll();
     }
 
-    public void insertProductCategory(ProductCategory productCategory){
+    public void insertProductCategory(ProductCategory productCategory) {
         productCategoryDaoJdbc.add(productCategory);
     }
 
-    public void removeCategory(int id){
+    public void removeCategory(int id) {
         productCategoryDaoJdbc.remove(id);
     }
 
-    public List<ProductCategory> getCategories(){
+    public List<ProductCategory> getCategories() {
         return productCategoryDaoJdbc.getAll();
     }
 
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         return productDaoJdbc.getAll();
     }
 
-    public void removeProduct(int id){
+    public void removeProduct(int id) {
         productDaoJdbc.remove(id);
     }
 
-    public void insertProduct(Product product){
+    public void insertProduct(Product product) {
         productDaoJdbc.add(product);
     }
 
-    public List<Product> getProductBySupplier(Supplier supplier){
+    public List<Product> getProductBySupplier(Supplier supplier) {
         return productDaoJdbc.getBy(supplier);
     }
 
-    public List<Product> getProductByCategory(ProductCategory productCategory ){
+    public List<Product> getProductByCategory(ProductCategory productCategory) {
         return productDaoJdbc.getBy(productCategory);
+    }
+
+    public List<User> getAllUsers() {
+        return userDaoJdbc.getAll();
+    }
+    public void addUser(User user){
+        userDaoJdbc.add(user);
     }
 }

@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import org.postgresql.ds.PGSimpleDataSource;
 
@@ -45,10 +46,6 @@ public class ShopDbManager {
         return dataSource;
     }
 
-    public List<Product> getAllProducts(){
-        return productDaoJdbc.getAll();
-    }
-
     public void insertSupplier(Supplier supplier){
         supplierDaoJdbc.add(supplier);
     }
@@ -60,4 +57,19 @@ public class ShopDbManager {
         return supplierDaoJdbc.getAll();
     }
 
+    public void insertProductCategory(ProductCategory productCategory){
+        productCategoryDaoJdbc.add(productCategory);
+    }
+
+    public void removeCategory(int id){
+        productCategoryDaoJdbc.remove(id);
+    }
+
+    public List<ProductCategory> getCategories(){
+        return productCategoryDaoJdbc.getAll();
+    }
+
+    public List<Product> getAllProducts(){
+        return productDaoJdbc.getAll();
+    }
 }

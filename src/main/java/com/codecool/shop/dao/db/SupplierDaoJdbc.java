@@ -3,9 +3,15 @@ package com.codecool.shop.dao.db;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Supplier;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 public class SupplierDaoJdbc implements SupplierDao {
+    private final DataSource dataSource;
+
+    public SupplierDaoJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
     @Override
     public void add(Supplier supplier) {
 

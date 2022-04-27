@@ -5,6 +5,8 @@ drop table if exists public.Supplier;
 create table public.Product(id integer primary key not null,
                             name text not null,
                             description text not null,
+                            price decimal not null,
+                            currency text not null,
                             supplier_id integer not null,
                             category_id integer not null);
 create table public.ProductCategory(id integer primary key not null,

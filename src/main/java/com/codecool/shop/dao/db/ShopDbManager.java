@@ -24,8 +24,8 @@ public class ShopDbManager {
     public void setup() throws SQLException {
         DataSource dataSource = connect();
         this.productCategoryDaoJdbc = new ProductCategoryDaoJdbc(dataSource);
-        this.productDaoJdbc = new ProductDaoJdbc(dataSource);
         this.supplierDaoJdbc = new SupplierDaoJdbc(dataSource);
+        this.productDaoJdbc = new ProductDaoJdbc(dataSource, supplierDaoJdbc, productCategoryDaoJdbc);
     }
 
     private DataSource connect() throws SQLException {

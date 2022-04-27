@@ -49,6 +49,7 @@ public class ShopDbManager {
     public void insertSupplier(Supplier supplier){
         supplierDaoJdbc.add(supplier);
     }
+
     public void removeSupplier(int id){
         supplierDaoJdbc.remove(id);
     }
@@ -71,5 +72,21 @@ public class ShopDbManager {
 
     public List<Product> getAllProducts(){
         return productDaoJdbc.getAll();
+    }
+
+    public void removeProduct(int id){
+        productDaoJdbc.remove(id);
+    }
+
+    public void insertProduct(Product product){
+        productDaoJdbc.add(product);
+    }
+
+    public List<Product> getProductBySupplier(Supplier supplier){
+        return productDaoJdbc.getBy(supplier);
+    }
+
+    public List<Product> getProductByCategory(ProductCategory productCategory ){
+        return productDaoJdbc.getBy(productCategory);
     }
 }

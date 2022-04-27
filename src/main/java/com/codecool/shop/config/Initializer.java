@@ -22,9 +22,9 @@ public class Initializer implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-//        ProductDao productDataStore = ProductDaoMem.getInstance();
-//        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-//        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 //
 //        //setting up a new supplier
 //        Supplier amazon = new Supplier("Amazon", "Digital content and services");
@@ -46,5 +46,18 @@ public class Initializer implements ServletContextListener {
 //        productDataStore.add(new Product("Iphone 12", new BigDecimal("100"), "USD", "Tim Cook latest iphone.", smartPhones, amazon));
         ShopDbManager sp = new ShopDbManager();
         sp.run();
+        List<Supplier> suppliers = sp.getSuppliers();
+        for (Supplier supplier : suppliers){
+            supplierDataStore.add(supplier);
+        }
+
+        List<ProductCategory> categories = sp.getCategories();
+        for ( ProductCategory category : categories){
+            productCategoryDataStore.add(category);
+        }
+        List<Product> products = sp.getAllProducts();
+        for ( Product product : products){
+            productDataStore.add(product);
+        }
     }
 }

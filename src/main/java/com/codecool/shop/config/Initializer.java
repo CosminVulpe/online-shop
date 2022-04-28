@@ -10,10 +10,13 @@ import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -56,7 +59,7 @@ public class Initializer implements ServletContextListener {
             productCategoryDataStore.add(category);
         }
         List<Product> products = sp.getAllProducts();
-        for ( Product product : products){
+        for ( Product product : products) {
             productDataStore.add(product);
         }
     }

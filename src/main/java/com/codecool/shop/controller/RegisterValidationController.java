@@ -8,12 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/response"})
-public class ResponseController extends HttpServlet {
+@WebServlet(urlPatterns = {"/registerValidation"})
+public class RegisterValidationController extends HttpServlet {
     private ShopDbManager sp = new ShopDbManager();
 
 
@@ -26,18 +25,18 @@ public class ResponseController extends HttpServlet {
         String userName = req.getParameter("username");
 
         List<User> allUsers = sp.getAllUsers();
-        if (password.equals(confirmPassword)) {
+        if (!password.equalsIgnoreCase(confirmPassword)) {
+            resp.sendRedirect("/registration");
+            return;
+        } else {
             for (User user : allUsers) {
-                if (userName.equals(user.getName())) {
+                if (userName.equals(user.getName()) || email.equals(user.getEmail())) {
                     resp.sendRedirect("/registration");
+                    return;
                 }
             }
-            sp.addUser(new User(userName,email,password));
         }
-
-
-
-        System.out.println(email);
-        System.out.println(password);
+        sp.addUser(new User(userName, email, password));
+        resp.sendRedirect("/login");
     }
 }

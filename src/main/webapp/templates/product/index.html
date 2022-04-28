@@ -22,17 +22,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#footer">Contact Us</a>
                 </li>
-                <li class="nav-btn">
+                <li th:unless="${session == null}" class="nav-btn">
                     <button type="button" id="btn-register" data-toggal="modal"
                             data-target="#register-login-modal" onclick="location.href='/registration'">Register
                     </button>
                 </li>
-                <li class="nav-btn">
-                    <button type="button" id="btn-login"> Login</button>
+                <li th:unless="${session == null}" class="nav-btn">
+                    <button type="button" id="btn-login" onclick="location.href='/login'"> Login</button>
                 </li>
-                <li class="nav-btn">
-                    <span style="display: none" id="logged-user"></span>
-                    <button type="button" id="bt-logout" style="display: none">Logout</button>
+                <li th:if="${session.containsKey('username')}" class="nav-btn">
+                    <span id="logged-user"></span>
+                    <button type="button" id="bt-logout">Logout</button>
                 </li>
                 <li class="nav-search">
                     <i class="fa fa-search" aria-hidden="true"></i>

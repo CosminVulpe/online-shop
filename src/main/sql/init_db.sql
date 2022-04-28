@@ -20,7 +20,8 @@ create table public.Supplier(id integer not null,
                              name text not null,
                              description text not null);
 
-create table public.Supplier(id integer primary key not null,
+create table public.Users(id integer primary key not null,
+                             username text not null,
                              email text not null,
                              password text not null);
 

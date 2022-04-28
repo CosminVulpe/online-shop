@@ -18,16 +18,13 @@ public class UserDaoJdb implements UserDao {
     @Override
     public void add(User user) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO user (id, user_name, email, password) VALUES(?,?,?,?)";
-            PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            String sql = "INSERT INTO users (id, username, email, password) VALUES(?,?,?,?)";
+            PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1, getMaxId() + 1);
             st.setString(2, user.getName());
             st.setString(3, user.getEmail());
             st.setString(4, user.getPassword());
             st.executeUpdate();
-            ResultSet rs = st.getGeneratedKeys();
-            rs.next();
-            user.setId(rs.getInt(1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -36,7 +33,7 @@ public class UserDaoJdb implements UserDao {
     @Override
     public void update(User user) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "UPDATE user SET user_name=?, password=? WHERE id=?";
+            String sql = "UPDATE users SET user_name=?, password=? WHERE id=?";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, user.getName());
             st.setString(2, user.getPassword());
@@ -50,7 +47,7 @@ public class UserDaoJdb implements UserDao {
     @Override
     public User get(int id) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT * FROM user WHERE id=?";
+            String sql = "SELECT * FROM users WHERE id=?";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
@@ -68,12 +65,12 @@ public class UserDaoJdb implements UserDao {
     @Override
     public List<User> getAll() {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM users";
             ResultSet rs = conn.createStatement().executeQuery(sql);
             List<User> result = new ArrayList<>();
             while (rs.next()) {
-                User user = new User(null, rs.getString(2), rs.getString(3));
-                user.setId(rs.getInt(1));
+                User user = new User(rs.getString("username"), rs.getString("email"), rs.getString("password"));
+                user.setId(rs.getInt("id"));
                 result.add(user);
             }
             return result;
@@ -86,7 +83,7 @@ public class UserDaoJdb implements UserDao {
     private int getMaxId() {
         int id;
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT COUNT(id) as max_id FROM user";
+            String sql = "SELECT COUNT(*) as max_id FROM users";
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()) {

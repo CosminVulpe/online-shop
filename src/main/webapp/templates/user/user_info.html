@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="header2.html :: header2">
+
+</head>
+<body>
+
+<form name="" method="post" action="/userInfo">
+    <div style="margin-top: 5%; width: 50%; margin-left: 25%" class="card text-center">
+        <div class="card-header">
+            User Information
+        </div>
+        <div class="card-body">
+
+            <label>First Name: <input type="text" id="first_name" required autofocus/></label>
+
+            <label>Last Name:<input type="text" id="last_name" required/></label>
+
+            <br/>
+
+            <label>Email: <input type="email" id="email" required/></label>
+
+            <label>Phone Number:<input type="text" id="phone_number" required/></label>
+
+
+        </div>
+        <div class="card-footer text-muted">
+            <input id="reset-info" value="Clear" class="btn btn-secondary"/>
+
+        </div>
+    </div>
+
+    <div style="margin-top: 1%; width: 50%; margin-left: 25%" class="card text-center">
+        <div class="card-header">
+            Billing Address
+        </div>
+        <div class="card-body">
+
+            <label>Country: <select th:replace="countries.html :: countries" required></select></label>
+
+            <label>City: <input type="text" id="city_bill" required/></label>
+
+            <br/>
+
+            <label>Address: <input type="text" id="address_bill" required/></label>
+
+            <label>Zipcode: <input type="number" id="zipcode_bill" required/></label>
+
+        </div>
+
+        <div class="card-footer text-muted">
+            <input id="reset-bill" value="Clear" class="btn btn-secondary"/>
+            <input id="clone-bill" value="Clone" class="btn btn-secondary"/>
+
+        </div>
+    </div>
+    <div style="margin-top: 1%; width: 50%; margin-left: 25%" class="card text-center">
+        <div class="card-header">
+            Shipping Address
+        </div>
+        <div class="card-body">
+
+            <label>Country:
+            <select th:replace="countries.html :: countries" required></select></label>
+
+             <label>City:<input type="text" id="city_ship" required/></label>
+
+            <br/>
+
+             <label>Address:<input type="text" id="address_ship" required/></label>
+
+            <label>Zipcode: <input type="number" id="zipcode_ship" required/></label>
+
+        </div>
+        <div class="card-footer text-muted">
+
+            <input id="reset-ship" value="Clear" class="btn btn-secondary"/>
+            <input id="clone-ship" value="Clone" class="btn btn-secondary"/><br/>
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

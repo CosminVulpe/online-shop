@@ -3,16 +3,6 @@ const buttons = document.querySelectorAll('.btn');
 const cards = cardContainer.getElementsByClassName('product');
 let productsInStore = {}
 
-
-const registerButton = document.querySelector('#btn-register');
-const loginButton = document.querySelector('#btn-login');
-const logoutButton = document.querySelector('#bt-logout');
-const loggedUser = document.querySelector('#logged-user');
-const wordSuccess = document.querySelector('div.modal-footer.alert.alert-success');
-const wordDanger = document.querySelector('div.modal-footer.alert.alert-danger');
-const title = document.querySelector('#modal-title');
-
-
 const filterCards = () => {
     let supplier = document.querySelector('#supplier');
     let filterSupplier = supplier.options[supplier.selectedIndex].innerText;
@@ -265,12 +255,6 @@ const init = () => {
     onLoadCartNumber();
     const searchIcon = document.querySelector('.fa-search');
     searchIcon.addEventListener('click', searchBar);
-    registerButton.addEventListener('click', () => {
-        toggleModal("register new user", 'register');
-    });
-    loginButton.addEventListener('click', () => {
-        toggleModal("login user", 'login');
-    });
 }
 
 init();

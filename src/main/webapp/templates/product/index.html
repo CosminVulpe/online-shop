@@ -22,17 +22,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#footer">Contact Us</a>
                 </li>
-                <li th:unless="${session == null}" class="nav-btn">
+                <li th:if="${session.username}">
+                    <p>Logged in as:
+                        <span th:text="${session.username}">
+                        </span>
+                    </p>
+                </li>
+                <li th:if="${session.username == null}" class="nav-btn">
                     <button type="button" id="btn-register" data-toggal="modal"
                             data-target="#register-login-modal" onclick="location.href='/registration'">Register
                     </button>
                 </li>
-                <li th:unless="${session == null}" class="nav-btn">
+                <li th:if="${session.username == null}" class="nav-btn">
                     <button type="button" id="btn-login" onclick="location.href='/login'"> Login</button>
                 </li>
-                <li th:if="${session.containsKey('username')}" class="nav-btn">
+                <li th:if="${session.username}" class="nav-btn">
                     <span id="logged-user"></span>
-                    <button type="button" id="bt-logout">Logout</button>
+                    <button type="button" id="bt-logout" onclick="location.href='/logout'">Logout</button>
                 </li>
                 <li class="nav-search">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -191,7 +197,6 @@
 <!--&lt;!&ndash; End Modal &ndash;&gt;-->
 
 <div th:replace="footer.html :: copy"></div>
-
 <!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
 <!--        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
 <!--        crossorigin="anonymous"></script>-->

@@ -29,8 +29,6 @@ public class ProductController extends HttpServlet {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDao = SupplierDaoMem.getInstance();
-        HttpSession session = req.getSession();
-        session.invalidate();
 
         ProductService productService = new ProductService(productDataStore, productCategoryDataStore);
 

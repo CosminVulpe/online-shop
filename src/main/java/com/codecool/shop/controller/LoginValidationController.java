@@ -1,10 +1,7 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.db.ShopDbManager;
 import com.codecool.shop.model.User;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,9 +26,9 @@ public class LoginValidationController extends HttpServlet {
         List<User> allUsers = sp.getAllUsers();
         for (User user : allUsers) {
             if (userName.equals(user.getName()) || password.equals(user.getPassword()) ){
-                resp.sendRedirect("/");
                 HttpSession session = req.getSession();
                 session.setAttribute("username", userName);
+                resp.sendRedirect("/");
                 return;
             }
         }

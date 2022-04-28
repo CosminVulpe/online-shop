@@ -35,16 +35,16 @@
 <body>
 <form name="loginForm" method="post" action="/registerValidation">
     Username: <label>
-    <input type="text" name="username"/>
+    <input type="text" name="username" required autofocus/>
 </label> <br/>
     Password: <label>
-    <input type="password" name="password"/>
+    <input type="password" name="password" required/>
 </label> <br/>
     Confirm Password: <label>
-    <input type="password" name="confirm-password"/>
+    <input type="password" name="confirm-password" required/>
 </label> <br/>
     Email: <label>
-    <input type="email" name="email"/>
+    <input type="email" name="email" required/>
 </label> <br/>
     <input type="submit" value="Login"/>
 </form>

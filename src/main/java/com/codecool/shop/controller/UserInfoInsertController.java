@@ -18,8 +18,6 @@ public class UserInfoInsertController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ShopDbManager sp = new ShopDbManager();
         sp.run();
-
-        HttpSession session = req.getSession();
         int zipcode = Integer.parseInt(req.getParameter("zipcode_bill"));
         int zipcodeShip = Integer.parseInt(req.getParameter("zipcode_ship"));
         int userId = (int) req.getSession().getAttribute("id");

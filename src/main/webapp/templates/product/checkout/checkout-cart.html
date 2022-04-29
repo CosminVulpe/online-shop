@@ -42,37 +42,37 @@
             <div class="card-body">
                 <form id="form" action="/payment">
                     <p>First Name:</p>
-                    <input type="text" placeholder="First Name" id="first_name" value="" required autofocus>
+                    <input th:value="${first_name != null} ? ${first_name} : ''" type="text" placeholder="First Name" id="first_name" value="" required autofocus>
                     <p>Last Name:</p>
-                    <input type="text" placeholder="Last Name" id="last_name" value="" required>
+                    <input th:value="${last_name != null} ? ${last_name} : ''" type="text" placeholder="Last Name" id="last_name" value="" required>
                     <p>Email:</p>
-                    <input type="email" placeholder="Email" id="email" value="" required>
+                    <input th:value="${email != null} ? ${email} : ''" type="email" placeholder="Email" id="email" value="" required>
                     <p>Phone Number:</p>
-                    <input type="tel" placeholder="Phone Number" id="phone_number" value="" required>
+                    <input th:value="${phone_number != null} ? ${phone_number} : ''" type="tel" placeholder="Phone Number" id="phone_number" value="" required>
                     <h4>Billing Address</h4>
                     <p>Country:</p>
                     <select th:replace="countries.html :: countries">
                     </select>
                     <p>City</p>
-                    <input type="text" placeholder="City" value="" id="city_bill">
+                    <input th:value="${city != null} ? ${city} : ''" type="text" placeholder="City" value="" id="city_bill">
                     <p>Address</p>
-                    <input type="tel" placeholder="Street, number, ap..." value="" id="address_bill">
+                    <input th:value="${address != null} ? ${address} : ''" type="tel" placeholder="Street, number, ap..." value="" id="address_bill">
                     <p>Zipcode</p>
-                    <input type="number" placeholder="Zipcode" value="" id="zipcode_bill">
+                    <input th:value="${zipcode != null} ? ${zipcode} : ''" type="number" placeholder="Zipcode" value="" id="zipcode_bill">
                     <br/>
                     <input type="checkbox" id="fill_in">
                     <label>Bill Address same as Shipping Address ?</label>
                     <br/>
                     <h4>Shipping Address</h4>
                     <p>Country:</p>
-                    <select th:replace="countries.html :: countries" name="countries" id="countries_ship" required>
+                    <select th:value="${country2 != null} ? ${country2} : ''" th:replace="countries.html :: countries">
                     </select>
                     <p>City</p>
-                    <input type="text" placeholder="City" value="" id="city_ship">
+                    <input th:value="${city2 != null} ? ${city2} : ''" type="text" placeholder="City" value="" id="city_ship">
                     <p>Address</p>
-                    <input type="tel" placeholder="Street, number, ap..." value="" id="address_ship">
+                    <input th:value="${address2 != null} ? ${address2} : ''" type="tel" placeholder="Street, number, ap..." value="" id="address_ship">
                     <p>Zipcode</p>
-                    <input type="number" placeholder="Zipcode" value="" id="zipcode_ship">
+                    <input th:value="${zipcode2 != null} ? ${zipcode2} : ''" type="number" placeholder="Zipcode" value="" id="zipcode_ship">
                     <br/>
                     <input type="checkbox" id="checkbox" required>
                     <label>I agree with Terms and Conditions</label>

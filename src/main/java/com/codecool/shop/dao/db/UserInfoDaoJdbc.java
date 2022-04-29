@@ -12,11 +12,9 @@ import java.util.List;
 
 public class UserInfoDaoJdbc implements UserInfoDao {
     private final DataSource dataSource;
-    private final UserInfoDaoJdbc userInfoDaoJdbc;
 
-    public UserInfoDaoJdbc(DataSource dataSource, UserInfoDaoJdbc userInfoDaoJdbc) {
+    public UserInfoDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.userInfoDaoJdbc = userInfoDaoJdbc;
     }
 
     @Override

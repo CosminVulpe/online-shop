@@ -25,11 +25,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#footer">Contact Us</a>
                 </li>
-                <li th:if="${session.username}">
-                    <p>Logged in as:
+                <li th:if="${session.username}" class="nav-item">
+                    <a class="nav-link" href="/userInfo">Logged in as:
                         <span th:text="${session.username}">
                         </span>
-                    </p>
+                    </a>
                 </li>
                 <li th:if="${session.username == null}" class="nav-btn">
                     <button type="button" id="btn-register" data-toggal="modal"

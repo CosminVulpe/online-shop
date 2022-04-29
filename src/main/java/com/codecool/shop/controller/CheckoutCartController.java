@@ -30,22 +30,24 @@ public class CheckoutCartController extends HttpServlet {
         sp.run();
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        UserInfo userInfo = sp.getUserInfo((int) req.getSession().getAttribute("id"));
         ProductService productService = new ProductService(productDataStore, productCategoryDataStore);
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("first_name", userInfo.getFirstName());
-        context.setVariable("last_name", userInfo.getLastName());
-        context.setVariable("email", userInfo.getEmail());
-        context.setVariable("phone_number", userInfo.getPhoneNumber());
-        context.setVariable("country", userInfo.getCountry());
-        context.setVariable("city", userInfo.getCity());
-        context.setVariable("address", userInfo.getAddress());
-        context.setVariable("zipcode", userInfo.getZipcode());
-        context.setVariable("country2", userInfo.getCountryShip());
-        context.setVariable("city2", userInfo.getCityShip());
-        context.setVariable("address2", userInfo.getAddressShip());
-        context.setVariable("zipcode2", userInfo.getZipcodeShip());
+        if ( req.getSession().getAttribute("id") != null){
+            UserInfo userInfo = sp.getUserInfo((int) req.getSession().getAttribute("id"));
+            context.setVariable("first_name", userInfo.getFirstName());
+            context.setVariable("last_name", userInfo.getLastName());
+            context.setVariable("email", userInfo.getEmail());
+            context.setVariable("phone_number", userInfo.getPhoneNumber());
+            context.setVariable("country", userInfo.getCountry());
+            context.setVariable("city", userInfo.getCity());
+            context.setVariable("address", userInfo.getAddress());
+            context.setVariable("zipcode", userInfo.getZipcode());
+            context.setVariable("country2", userInfo.getCountryShip());
+            context.setVariable("city2", userInfo.getCityShip());
+            context.setVariable("address2", userInfo.getAddressShip());
+            context.setVariable("zipcode2", userInfo.getZipcodeShip());
+        }
         engine.process("product/checkout/checkout-cart.html", context, resp.getWriter());
     }
 }

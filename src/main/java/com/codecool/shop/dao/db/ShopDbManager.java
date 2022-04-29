@@ -1,14 +1,11 @@
 package com.codecool.shop.dao.db;
 
-import com.codecool.shop.model.Product;
+import com.codecool.shop.model.*;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
-import com.codecool.shop.model.User;
 import org.postgresql.ds.PGSimpleDataSource;
 
 public class ShopDbManager {
@@ -16,6 +13,7 @@ public class ShopDbManager {
     private ProductDaoJdbc productDaoJdbc;
     private SupplierDaoJdbc supplierDaoJdbc;
     private UserDaoJdb userDaoJdbc;
+    private UserInfoDaoJdbc userInfoDaoJdbc;
 
     public void run() {
         try {
@@ -32,6 +30,7 @@ public class ShopDbManager {
         this.supplierDaoJdbc = new SupplierDaoJdbc(dataSource);
         this.productDaoJdbc = new ProductDaoJdbc(dataSource, supplierDaoJdbc, productCategoryDaoJdbc);
         this.userDaoJdbc = new UserDaoJdb(dataSource);
+        this.userInfoDaoJdbc = new UserInfoDaoJdbc(dataSource, userInfoDaoJdbc);
     }
 
     private DataSource connect() throws SQLException {
@@ -96,7 +95,25 @@ public class ShopDbManager {
     public List<User> getAllUsers() {
         return userDaoJdbc.getAll();
     }
+
     public void addUser(User user){
         userDaoJdbc.add(user);
+    }
+
+    public void addUserInfo(UserInfo userInfo){
+
+        if (userInfoDaoJdbc.find(userInfo.getUserId()) != null ){
+            userInfoDaoJdbc.update(userInfo);
+        }else{
+            userInfoDaoJdbc.add(userInfo);
+        }
+    }
+
+    public UserInfo getUserInfo(int id){
+        return  userInfoDaoJdbc.find(id);
+    }
+
+    public void updateUserInfo(UserInfo userInfo){
+        userInfoDaoJdbc.update(userInfo);
     }
 }

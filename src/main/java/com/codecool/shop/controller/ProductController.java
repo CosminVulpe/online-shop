@@ -49,15 +49,4 @@ public class ProductController extends HttpServlet {
         // context.setVariables(params);
         engine.process("product/index.html", context, resp.getWriter());
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("POST METHOD INDEX");
-
-        String email = req.getParameter("form-username");
-        String password = req.getParameter("form-password");
-
-        System.out.println(email);
-        System.out.println(password);
-    }
 }

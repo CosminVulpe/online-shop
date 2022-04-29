@@ -28,6 +28,8 @@ public class LoginValidationController extends HttpServlet {
             if (userName.equals(user.getName()) || password.equals(user.getPassword()) ){
                 HttpSession session = req.getSession();
                 session.setAttribute("username", userName);
+                session.setAttribute("id", user.getId());
+                System.out.println(user.getId());
                 resp.sendRedirect("/");
                 return;
             }

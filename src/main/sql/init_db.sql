@@ -2,6 +2,7 @@ drop table if exists public.Product;
 drop table if exists public.ProductCategory;
 drop table if exists public.Supplier;
 drop table if exists public.Users;
+drop table if exists public.User_info;
 
 create table public.Product(id integer primary key not null,
                             name text not null,
@@ -24,6 +25,21 @@ create table public.Users(id integer primary key not null,
                              username text not null,
                              email text not null,
                              password text not null);
+
+create table public.User_info(id integer primary key not null,
+                              first_name text not null,
+                              last_name text not null,
+                              email text not null,
+                              phone_number text not null,
+                              country text not null,
+                              city text not null,
+                              address text not null,
+                              zipcode integer not null,
+                              country_ship text not null,
+                              city_ship text not null,
+                              address_ship text not null,
+                              zipcode_ship integer not null,
+                              user_id integer not null);
 
 insert into public.productcategory(id, name, departament, description)
 values(1, 'Tablet', 'Hardware','A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.'),

@@ -33,20 +33,10 @@ public class RegistrationUserController extends HttpServlet {
             e.printStackTrace();
             LOG.error("Could not load sign page!");
         }
-
-//        String email = req.getParameter("form-username");
-//        String password = req.getParameter("form-password");
-//
-//        System.out.println("sa mor de nu te bat daca mai dai null inca odata");
-//        System.out.println(email);
-//        System.out.println(password);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.info("DoPost sign page!");
-        System.out.println("POST METHOD");
-
-
     }
 }

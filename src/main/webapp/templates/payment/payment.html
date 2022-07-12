@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+
+    <meta charset="utf-8"/>
+    <meta name="author" content="Codecool"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <title>Codecool Shop</title>
+
+    <!-- Bootstrap components -->
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!--Latest compiled and minified Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+    <!-- End of Bootstrap components -->
+
+    <!--    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>-->
+    <link rel="stylesheet" type="text/css" href="/static/css/payment.css"/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <script src="/static/js/payment.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="card-container">
+        <div class="front">
+            <div class="image">
+                <img src="/static/img/chip.png" alt="">
+                <img src="/static/img/visa.png" alt="">
+            </div>
+            <div class="card-number-box">#############</div>
+            <div class="flexbox">
+                <div class="box">
+                    <span>Card Holder</span>
+                    <div class="card-holder-name">Full Name</div>
+                </div>
+                <div class="box">
+                    <span>Expiration</span>
+                    <div class="expiration">
+                        <span class="exp-month">mm</span>
+                        <span class="exp-year">yy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="back">
+            <div class="stripe"></div>
+            <div class="box">
+                <span>cvv</span>
+                <div class="cvv-box"></div>
+                <img src="static/img/visa.png" alt="">
+            </div>
+        </div>
+    </div>
+
+
+    <form action="/orderConfirmation">
+        <div class="inputBox">
+            <span>Card Number</span>
+            <input type="text" maxlength="16" class="card-number-input" required>
+        </div>
+        <div class="inputBox">
+            <span>Card Holder</span>
+            <input type="text" maxlength="30" class="card-holder-input" required>
+        </div>
+        <div class="flexbox">
+            <div class="inputBox">
+                <span>Expiration mm</span>
+                <select name="" class="month-input">
+                    <option value="month" selected disabled>Month</option>
+                    <option th:each="nr : ${numbers}" th:value="${nr}" th:text="${nr}"></option>
+                </select>
+            </div>
+            <div class="inputBox">
+                <span>Expiration yy</span>
+                <select name="" class="year-input">
+                    <option value="month" selected disabled>Year</option>
+                    <option th:each="year : ${years}" th:value="${year}" th:text="${year}"></option>
+                </select>
+            </div>
+            <div class="inputBox">
+                <span>CVV</span>
+                <input type="text" maxlength="3" class="cvv-input" required>
+            </div>
+        </div>
+        <input type="submit" value="Pay" id="submit" class="submit-btn">
+    </form>
+</div>
+</body>
+</html>

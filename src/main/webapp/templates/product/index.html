@@ -1,67 +1,213 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8" />
-    <meta name="author" content="Codecool" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<head th:replace="header.html :: header">
+    <script src="/static/js/main.js" defer></script>
 
-    <title>Codecool Shop</title>
-
-    <!-- Bootstrap components -->
-    <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-    <!--Latest compiled and minified Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <!-- End of Bootstrap components -->
-
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
 
 <body>
-
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-</div>
-
-<div class="container">
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+<!-- NAVIGATION-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-3 fixed-top">
+    <div class="container">
+        <img src="/static/img/shop-logo2.jpeg" class="img-thumbnail" alt="Logo codecool IT company" id="logo-imagine">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span><i id="bar" class="fa fa-bars" aria-hidden="true"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#featured">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#footer">Contact Us</a>
+                </li>
+                <li th:if="${session.username}" class="nav-item">
+                    <a class="nav-link" href="/userInfo">Logged in as:
+                        <span th:text="${session.username}">
+                        </span>
+                    </a>
+                </li>
+                <li th:if="${session.username == null}" class="nav-btn">
+                    <button type="button" id="btn-register" data-toggal="modal"
+                            data-target="#register-login-modal" onclick="location.href='/registration'">Register
+                    </button>
+                </li>
+                <li th:if="${session.username == null}" class="nav-btn">
+                    <button type="button" id="btn-login" onclick="location.href='/login'"> Login</button>
+                </li>
+                <li th:if="${session.username}" class="nav-btn">
+                    <span id="logged-user"></span>
+                    <button type="button" id="bt-logout" onclick="location.href='/logout'">Logout</button>
+                </li>
+                <li class="nav-search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </li>
+                <li class="nav-cart">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"
+                       onclick="location.href='/shopping-cart'">&nbsp;<span>0</span></i>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
 
-    <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
-                <div class="card-header">
-                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+<section id="home">
+    <div class="text">
+        <h5>NEW ARRIVALS</h5>
+        <h1><span>Best Prices </span> This Year</h1>
+        <p>The Future Is Here<br> Code It!</p>
+        <button>Shop Now</button>
+    </div>
+</section>
+
+<section id="brand" class="container">
+    <div class="row m-0 py-2">
+        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/lenovo-black.jpg" alt="">
+        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/samsung-black2.png" alt="">
+        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/lenovo-black.jpg" alt="">
+        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/samsung-black2.png" alt="">
+        <!--        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/lenovo-black.jpg" alt="">-->
+        <!--        <img class="img-fluid col-lg-2 col-mg-4 col-6" src="/static/img/samsung-black2.png" alt="">-->
+    </div>
+</section>
+
+<section id="new" class="w-100">
+    <div class="row p-0 m-0">
+        <div class="one col-lg-4 col-md-12 col-12 p-0">
+            <img class="img-fluid" src="/static/img/new/latops-white1.jpg" alt="">
+            <div class="details">
+                <h2 class="headers">Laptops</h2>
+                <button class="text-uppercase">Shop Now</button>
+            </div>
+        </div>
+        <div class="one col-lg-4 col-md-12 col-12 p-0">
+            <img class="img-fluid" src="/static/img/new/tables-kids-white4.png" alt="">
+            <div class="details">
+                <h2 class="headers">Tablets</h2>
+                <button class="text-uppercase">Shop Now</button>
+            </div>
+        </div>
+        <div class="one col-lg-4 col-md-12 col-12 p-0">
+            <img class="img-fluid" src="/static/img/new/smartphone-white4.png" alt="">
+            <div class="details">
+                <h2 class="headers">Smartphones</h2>
+                <button class="text-uppercase">Shop Now</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="featured">
+    <div class="container text-center mt-5 py-5">
+        <h3> Our feature</h3>
+        <hr class="mx-auto">
+        <p>Here you can check out our new products with fair prices </p>
+    </div>
+    <div class="container">
+        <!--        <div class="card" th:each="cat:${category}">-->
+        <!--            <strong th:text="${cat.getName()}">Category Title</strong>-->
+        <!--        </div>-->
+
+        <div class="float-left">
+            <select name="supplier" id="supplier">
+                <option disabled selected value="">Select supplier</option>
+                <option th:each="suppl : ${suppliers}" th:value="${suppl.name}"
+                        th:text="${suppl.name}"></option>
+            </select>
+        </div>
+        <div class="float-right">
+            <select name="category" id="category">
+                <option disabled selected value="">Select category</option>
+                <option th:each="cat: ${category} " th:value="${cat.name}" th:text="${cat.name}"></option>
+            </select>
+
+        </div>
+
+        <div id="products" class="row mx-auto container-fluid">
+            <div class="product col col-sm-12 col-md-6 col-lg-4 text-center col-lg-3 col-md-4 col-12"
+                 th:each="prod,iterStat : ${products}">
+                <div class="card">
+                    <img class="img-fluid" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+                    <div class="card-header">
+                        <div class="star">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                        <p class="supplier-name" th:text="${prod.supplier.name}">Supplier</p>
+                        <p class="category-name" th:text="${prod.getProductCategory().getName()}">Category</p>
+                        <p class="card-text" th:text="${prod.description}">Product description... </p>
                     </div>
-                    <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                    <div class="card-footer">
+                        <div class="card-text">
+                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        </div>
+                        <div class="card-text">
+                            <a class="btn btn">Add to cart</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-</div>
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="register-login-modal" tabindex="-1" role="dialog" aria-labelledby="register-login-modal"-->
+<!--     aria-hidden="true" xmlns:th="http://www.thymeleaf.org">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="modal-title"></h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form th:action="@{/registration}" method="POST">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="form-username">Username:</label>-->
+<!--                        <input type="text" class="form-control" id="form-username" name="form-username" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="form-password">Password</label>-->
+<!--                        <input type="password" class="form-control" id="form-password" name="form-password"-->
+<!--                               aria-describedby="password-help" required>-->
+<!--                        <small id="password-help" class="form-text text-muted">We'll never share your password with-->
+<!--                            anyone else.</small>-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer alert alert-danger mb-2" role="alert">-->
+<!--                        <strong>Incomplete data or Username already exists!</strong>-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer alert alert-success mb-2" role="alert">-->
+<!--                        <strong>Registration successful!</strong>-->
+<!--                    </div>-->
+<!--                    <button type="button" class="btn btn-primary">Submit</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash; End Modal &ndash;&gt;-->
 
 <div th:replace="footer.html :: copy"></div>
-
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+<!--        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"-->
+<!--        crossorigin="anonymous"></script>-->
 </body>
 </html>

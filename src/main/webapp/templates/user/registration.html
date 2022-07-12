@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header.html :: header">
+</head>
+<body>
+
+<div style="margin-top: 10%; width: 50%; margin-left: 25%" class="card text-center">
+    <div class="card-header">
+        Register card
+    </div>
+    <div class="card-body">
+
+        <form name="loginForm" method="post" action="/registerValidation">
+            Username: <label>
+            <input type="text" name="username" required autofocus/>
+        </label> <br/>
+            Password: <label>
+            <input type="password" name="password" required/>
+        </label> <br/>
+            Confirm Password: <label>
+            <input type="password" name="confirm-password" required/>
+        </label> <br/>
+            Email: <label>
+            <input type="email" name="email" required/>
+        </label> <br/>
+            <input type="submit" value="Login" class="btn btn-primary"/>
+        </form>
+
+
+    </div>
+    <div class="card-footer text-muted">
+        Alex and Cosmin work here !
+    </div>
+</div>
+
+
+</body>
+</html>

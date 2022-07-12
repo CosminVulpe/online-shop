@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="header2.html :: header2">
+
+</head>
+<body>
+
+<form name="" method="post" action="/insert">
+    <div style="margin-top: 5%; width: 50%; margin-left: 25%" class="card text-center">
+        <div class="card-header">
+            User Information
+        </div>
+        <div class="card-body">
+
+            <label>First Name: <input th:value="${first_name != null} ? ${first_name} : ''" type="text" id="first_name" name="first_name" required autofocus/></label>
+
+            <label>Last Name:<input th:value="${last_name != null} ? ${last_name} : ''" type="text" id="last_name" name="last_name" required/></label>
+
+            <br/>
+
+            <label>Email: <input th:value="${email != null} ? ${email} : ''" type="email" id="email" name="email" required/></label>
+
+            <label>Phone Number:<input  th:value="${phone_number != null} ? ${phone_number} : ''" type="text" id="phone_number" name="phone_number" required/></label>
+
+
+        </div>
+        <div class="card-footer text-muted">
+            <input id="reset-info" value="Clear" class="btn btn-secondary"/>
+
+        </div>
+    </div>
+
+    <div style="margin-top: 1%; width: 50%; margin-left: 25%" class="card text-center">
+        <div class="card-header">
+            Billing Address
+        </div>
+        <div class="card-body">
+
+            <label>Country: <select th:replace="countries.html :: countries" required></select></label>
+
+            <label>City: <input th:value="${city != null} ? ${city} : ''" type="text" id="city_bill" name="city_bill" required/></label>
+
+            <br/>
+
+            <label>Address: <input th:value="${address != null} ? ${address} : ''" type="text" id="address_bill" name="address_bill" required/></label>
+
+            <label>Zipcode: <input th:value="${zipcode != null} ? ${zipcode} : ''" type="number" id="zipcode_bill" name="zipcode_bill" required/></label>
+
+        </div>
+
+        <div class="card-footer text-muted">
+            <input id="reset-bill" value="Clear" class="btn btn-secondary"/>
+            <input id="clone-bill" value="Clone" class="btn btn-secondary"/>
+
+        </div>
+    </div>
+    <div style="margin-top: 1%; width: 50%; margin-left: 25%" class="card text-center">
+        <div class="card-header">
+            Shipping Address
+        </div>
+        <div class="card-body">
+
+            <label>Country:
+            <select th:replace="countries.html :: countries2" required></select></label>
+
+             <label>City:<input th:value="${city2 != null} ? ${city2} : ''"type="text" id="city_ship" name="city_ship" required/></label>
+
+            <br/>
+
+             <label>Address:<input th:value="${address2 != null} ? ${address2} : ''" type="text" id="address_ship" name="address_ship" required/></label>
+
+            <label>Zipcode: <input th:value="${zipcode2 != null} ? ${zipcode2} : ''" type="number" id="zipcode_ship" name="zipcode_ship" required/></label>
+
+        </div>
+        <div class="card-footer text-muted">
+
+            <input id="reset-ship" value="Clear" class="btn btn-secondary"/>
+            <input id="clone-ship" value="Clone" class="btn btn-secondary"/><br/>
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

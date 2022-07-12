@@ -148,10 +148,6 @@ const searchBar = () => {
 
 
 const toggleModal = (modalTitle, processOption) => {
-    // title.innerText = modalTitle;
-
-    // wordSuccess.style.display = "none";
-    // wordDanger.style.display = "none";
 
     $('#register-login-modal').modal('show');
     const submitButton = document.querySelector('.modal-body>form>button');
@@ -175,16 +171,6 @@ const addUser = async () => {
         },
         body: JSON.stringify(dataPosted),
     });
-
-    // let jsonResponse = await serverResponse.json();
-    // console.log(jsonResponse);
-    //
-    // if (jsonResponse['success']) {
-    //     wordSuccess.style.display = "block";
-    // } else {
-    //     wordDanger.style.display = "block";
-    // }
-    // console.log(jsonResponse);
 }
 
 
@@ -205,27 +191,6 @@ const loginUser = async () => {
         },
         body: JSON.stringify(dataPosted),
     });
-    // let jsonResponse = await serverResponse.json();
-    //
-    //
-    // if (jsonResponse['success']) {
-    //     wordSuccess.innerText = "Logged in successful";
-    //     wordSuccess.style.display = "block";
-    //     wordDanger.style.display = "none";
-    //     sessionStorage.setItem("logged in", "true");
-    //     sessionStorage.setItem("userName", `${jsonResponse['username']}`);
-    //     sessionStorage.setItem("logUser", `${jsonResponse['username']}`);
-    //     registerButton.style.display = "none";
-    //     loginButton.style.display = "none";
-    //     loggedUser.innerText = "Log in as " + `${jsonResponse['username']}`;
-    //     logoutButton.style.display = "inline-block";
-    //
-    //     loggedUser.style.display = "inline-block";
-    // } else {
-    //     wordDanger.innerText = "Incorrect password or user";
-    //     wordSuccess.style.display = "none";
-    //     wordDanger.style.display = "block";
-    // }
 
 }
 

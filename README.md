@@ -20,7 +20,7 @@ In the resources folder, there is file named `connection.properties`, there you 
 To create the tables of the database automatically, you have to run `init_db.sql`. Check out the above **PostgreSql Schema**.
 
 ### Start the project
-To start the project, the command-line is used: `mvn jetty:run`.
+To start the project, the command-line is used: `mvn jetty:run`. The port running is: `localhost:8080`.
 
 ## Functionality overview
 
@@ -29,7 +29,7 @@ To start the project, the command-line is used: `mvn jetty:run`.
 - User can register and login
 - User can decrease or increase the products directly from cart
 - The products can be sorted both by the categoty and supplier
-- Products can be found by searching by their nama
+- Products can be found by searching by their name
 
 ### The general page breakdown:
 - Home Page (URL: /)

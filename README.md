@@ -1,7 +1,7 @@
 # Codecool-Shop
 [![Actions](https://github.com/gothinkster/spring-boot-realworld-example-app/workflows/Java%20CI/badge.svg)](https://github.com/gothinkster/spring-boot-realworld-example-app/actions)
-![anotherLogo2](https://user-images.githubusercontent.com/86559678/178484618-cbde2161-afee-4fc6-a45e-5982f8195dd2.jpeg)
-> ### Codecool-Shop is an online shop for customers to buy smartphones, and gagdes.
+![anotherLogo2](https://user-images.githubusercontent.com/86559678/179210570-10d9304f-c2ca-4efa-b204-265eba832822.jpeg)
+> ### Codecool-Shop is an online shop for customers to buy smartphones, and gagdes.
 Codecool-Shop was created to get familiarised with jetty technology combining with HTML, CSS and javascript.
 
 ## PostgreSql Schema

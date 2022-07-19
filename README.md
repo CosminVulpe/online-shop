@@ -4,6 +4,13 @@
 > ### Codecool-Shop is an online shop for customers to buy smartphones, and gagdes.
 Codecool-Shop was created to get familiarised with jetty technology combining with HTML, CSS and javascript.
 
+## General functionality
+- CRUD Operation
+- User can register and login
+- User can decrease or increase the products directly from cart
+- The products can be sorted both by the categoty and supplier
+- Products can be found by searching by their name
+
 ## PostgreSql Schema
 ![codecoolShop@localhost](https://user-images.githubusercontent.com/86559678/178486179-a7776a00-5d49-4517-ba60-c22511ce4bc4.png)
 
@@ -24,12 +31,6 @@ To start the project, the command-line is used: `mvn jetty:run`. The port runnin
 
 ## Functionality overview
 
-### General functionality
-- CRUD Operation
-- User can register and login
-- User can decrease or increase the products directly from cart
-- The products can be sorted both by the categoty and supplier
-- Products can be found by searching by their name
 
 ### The general page breakdown:
 - Home Page (URL: /)
